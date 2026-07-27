@@ -1,0 +1,15 @@
+{
+  "theme": "auto",
+  "apiKeyHelper": "/Users/ilirium/.claude-code-router/bin/ccr-claude-code-api-key-default-claude-code",
+  "env": {
+    "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1",
+    "ANTHROPIC_BASE_URL": "http://127.0.0.1:3456",
+    "ANTHROPIC_API_BASE_URL": "http://127.0.0.1:3456",
+    "CLAUDE_AGENT_API_BASE_URL": "http://127.0.0.1:3456",
+    "ANTHROPIC_MODEL": "LM Studio/google/gemma-4-e4b",
+    "CCR_CLAUDE_CODE_MODEL": "LM Studio/google/gemma-4-e4b",
+    "CODEXL_CLAUDE_CODE_MODEL": "LM Studio/google/gemma-4-e4b",
+    "ANTHROPIC_SMALL_FAST_MODEL": "LM Studio/google/gemma-4-e4b"
+  },
+  "model": "LM Studio/lms-google-gemma-4-e4b"
+}
