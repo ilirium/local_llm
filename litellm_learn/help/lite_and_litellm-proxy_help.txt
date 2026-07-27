@@ -1,0 +1,29 @@
+Usage: lite [OPTIONS] [COMMAND] [ARGS]...
+
+  LiteLLM Proxy CLI - Manage your LiteLLM proxy server
+
+Options:
+  -v, --version    Show the LiteLLM Proxy CLI and server version and exit.
+  --base-url TEXT  Base URL of the LiteLLM proxy server  [env var:
+                   LITELLM_PROXY_URL]
+  --api-key TEXT   API key for authentication  [env var:
+                   LITELLM_PROXY_API_KEY]
+  --help           Show this message and exit.
+
+Commands:
+  auth         Manage CLI authentication (apiKeyHelper support, etc.)
+  chat         Interactive chat with streaming responses
+  claude       Run Claude Code through your LiteLLM proxy
+  codex        Run Codex through your LiteLLM proxy
+  credentials  Manage credentials for the LiteLLM proxy server
+  encryption   Migrate at-rest credentials to AES-256-GCM and attest...
+  http         Make HTTP requests to the LiteLLM proxy server
+  keys         Manage API keys for the LiteLLM proxy server
+  login        Login to LiteLLM proxy using SSO authentication
+  logout       Logout and clear stored authentication
+  models       Manage models on your LiteLLM proxy server
+  opencode     Run OpenCode through your LiteLLM proxy
+  teams        Manage teams and team assignments
+  users        Manage users on your LiteLLM proxy server
+  version      Show the LiteLLM Proxy CLI and server version.
+  whoami       Show current authentication status

@@ -1,0 +1,114 @@
+Usage: litellm [OPTIONS] [CLI_ARGS]...
+
+Options:
+  --host TEXT                     Host for the server to listen on.
+  --port INTEGER                  Port to bind the server to.
+  --num_workers INTEGER           Number of worker processes for uvicorn /
+                                  gunicorn, or Granian worker processes
+                                  (--workers). Default is 1 (from
+                                  DEFAULT_NUM_WORKERS_LITELLM_PROXY). With
+                                  --run_granian, use --granian_threads for
+                                  runtime threads per worker.
+  --granian_threads INTEGER RANGE
+                                  Only with --run_granian: runtime threads per
+                                  worker process (Granian --runtime-threads /
+                                  GRANIAN_RUNTIME_THREADS). Omit to use
+                                  Granian's default (1).  [x>=1]
+  --api_base TEXT                 API base URL.
+  --api_version TEXT              For azure - pass in the api version.
+  -m, --model TEXT                The model name to pass to litellm expects
+  --alias TEXT                    The alias for the model - use this to give a
+                                  litellm model name (e.g. "huggingface/codell
+                                  ama/CodeLlama-7b-Instruct-hf") a more user-
+                                  friendly name ("codellama")
+  --add_key TEXT                  The model name to pass to litellm expects
+  --headers TEXT                  headers for the API call
+  --save                          Save the model-specific config
+  --debug                         To debug the input
+  --detailed_debug                To view detailed debug logs
+  --use_queue                     To use celery workers for async endpoints
+  --temperature FLOAT             Set temperature for the model
+  --max_tokens INTEGER            Set max tokens for the model
+  --request_timeout INTEGER       Set timeout in seconds for completion calls
+  --drop_params                   Drop any unmapped params
+  --add_function_to_prompt        If function passed but unsupported, pass it
+                                  as prompt
+  -c, --config TEXT               Path to the proxy configuration file (e.g.
+                                  config.yaml). Usage `litellm --config
+                                  config.yaml`
+  --max_budget FLOAT              Set max budget for API calls - works for
+                                  hosted models like OpenAI, TogetherAI,
+                                  Anthropic, etc.`
+  --telemetry BOOLEAN             Helps us know if people are using this
+                                  feature. Turn this off by doing `--telemetry
+                                  False`
+  --log_config TEXT               Path to the logging configuration file
+  --setup                         Run the interactive setup wizard to
+                                  configure providers and generate a config
+                                  file
+  -v, --version                   Print LiteLLM version
+  --health                        Make a chat/completions request to all llms
+                                  in config.yaml
+  --test                          proxy chat completions url to make a test
+                                  request to
+  --test_async                    Calls async endpoints /queue/requests and
+                                  /queue/response
+  --iam_token_db_auth             Connects to RDS DB with IAM token
+  --num_requests INTEGER          Number of requests to hit async endpoint
+                                  with
+  --run_gunicorn                  Starts proxy via gunicorn, instead of
+                                  uvicorn (better for managing multiple
+                                  workers)
+  --run_hypercorn                 Starts proxy via hypercorn, instead of
+                                  uvicorn (supports HTTP/2)
+  --run_granian                   Starts proxy via Granian (Rust ASGI server)
+                                  instead of uvicorn. Requires Python 3.10+
+                                  and the `granian` package.
+  --ssl_keyfile_path TEXT         Path to the SSL keyfile. Use this when you
+                                  want to provide SSL certificate when
+                                  starting proxy
+  --ssl_certfile_path TEXT        Path to the SSL certfile. Use this when you
+                                  want to provide SSL certificate when
+                                  starting proxy
+  --ciphers TEXT                  Ciphers to use for the SSL setup.
+  --use_prisma_db_push            Use prisma db push instead of prisma migrate
+                                  for database schema updates
+  --local                         for local debugging
+  --skip_server_startup           Skip starting the server after setup (useful
+                                  for migrations only)
+  --keepalive_timeout INTEGER     Set the uvicorn keepalive timeout in seconds
+                                  (uvicorn timeout_keep_alive parameter)
+  --timeout_worker_healthcheck INTEGER
+                                  Set the uvicorn worker health-check timeout
+                                  in seconds (uvicorn
+                                  timeout_worker_healthcheck parameter).
+                                  Requires uvicorn>=0.37.0. Only applies when
+                                  running uvicorn directly with
+                                  --num_workers>1; ignored under
+                                  --run_gunicorn / --run_hypercorn.
+  --max_requests_before_restart INTEGER
+                                  Restart worker after this many requests
+                                  (uvicorn: limit_max_requests, gunicorn:
+                                  max_requests)
+  --max_requests_before_restart_jitter INTEGER
+                                  Stagger worker restarts by adding a random
+                                  amount in [0, jitter] to
+                                  --max_requests_before_restart so workers do
+                                  not recycle at the same time (uvicorn:
+                                  limit_max_requests_jitter, requires
+                                  uvicorn>=0.41.0; gunicorn:
+                                  max_requests_jitter). Has no effect without
+                                  --max_requests_before_restart.
+  --enforce_prisma_migration_check
+                                  Exit with error if database migration fails
+                                  on startup.
+  --use_v2_migration_resolver     Opt into the v2 migration resolver. Avoids
+                                  the diff-and-force recovery path that can
+                                  cause schema thrashing during rolling
+                                  deploys where two LiteLLM versions contend
+                                  for the same DB. Default is the v1 resolver.
+  --reload                        Enable uvicorn hot reload (dev only). Also
+                                  reloads when the --config YAML file changes.
+                                  Incompatible with --num_workers>1,
+                                  --run_gunicorn, and --run_hypercorn.
+  --help                          Show this message and exit.
